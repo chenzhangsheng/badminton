@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="base.Product" >
+    <id column="pro_id" property="proId" jdbcType="INTEGER" />
+    <result column="pro_name" property="proName" jdbcType="VARCHAR" />
+    <result column="pro_head" property="proHead" jdbcType="VARCHAR" />
+    <result column="product_price" property="productPrice" jdbcType="INTEGER" />
+    <result column="pro_sum" property="proSum" jdbcType="INTEGER" />
+    <result column="pro_rateprice" property="proRateprice" jdbcType="INTEGER" />
+    <result column="pro_online" property="proOnline" jdbcType="BIT" />
+    <result column="pro_remark" property="proRemark" jdbcType="VARCHAR" />
+    <result column="pro_area" property="proArea" jdbcType="VARCHAR" />
+    <result column="classify_id" property="classifyId" jdbcType="INTEGER" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_modified_time" property="lastModifiedTime" jdbcType="TIMESTAMP" />
+    <result column="gene_num" property="geneNum" jdbcType="INTEGER" />
+    <result column="sel_number" property="selNumber" jdbcType="INTEGER" />
+    <result column="pro_detail" property="proDetail" jdbcType="LONGVARCHAR" />
+    <result column="ishotsell" property="ishotsell" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap type="po.Product" id="ProductAndImagesResultMap" extends="BaseResultMap">
+	<collection property="imagelist" ofType="po.Image">
+			<id column="image_id" property="imageId"></id>
+			<result column="pro_id" property="proId"></result>
+			<result column="url" property="url"></result>
+	</collection>
+  </resultMap> 
+  <sql id="Base_Column_List" >
+    pro_id, pro_name, pro_head, product_price, pro_sum, pro_rateprice, pro_online, 
+    pro_remark, pro_area, classify_id, isdelete, create_time, last_modified_time, gene_num, 
+    sel_number,pro_detail,ishotsell
+  </sql>
+  <select id="selectProductAndImage" resultMap="ProductAndImagesResultMap" >
+    	select 
+	   	 	product.*,
+		    image.*
+	    from 
+		    product,
+		    image
+		    where 1 = 1
+		     <if test="classifyId != null" >
+		     	AND  product.classify_id=#{classifyId,jdbcType=INTEGER} 
+		     </if>
+		     <if test="ishotsell != null" >
+		     	AND  product.ishotsell=#{ishotsell,jdbcType=INTEGER} 
+		     </if>
+		     <if test="proId != null" >
+		     	AND  product.pro_id=#{proId,jdbcType=INTEGER} 
+		     </if>
+		     AND product.isdelete= false 
+		     AND product.pro_online=true
+		   	 AND image.pro_id=product.pro_id
+  </select>
+  
+  <update id="deleteByClassifyKey1" parameterType="java.util.HashMap">
+ 	 update product set isdelete = 1 where classify_id = #{classifyId}
+  </update>
+  
+  
+   <select id="selectProductByParams" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+    select 
+    <include refid="Base_Column_List" />
+	    from product
+	    where isdelete = 0
+	   <if test="productID != null">
+        and product_id =  #{productID}
+      </if>
+      <if test="productName != null" >
+        and pro_name  LIKE '%${productName}%'
+      </if>
+      <if test="productOnline != null" >
+       and pro_online = #{productOnline}
+      </if>
+     <!--   <if test="classify_id != null" >
+       and classify_id = #{classify_id}
+      </if> -->
+     <if test="beginTime != null ">
+          AND CREATE_TIME > #{beginTime} 
+      </if>
+      <if test="endTime != null ">
+          <![CDATA[AND CREATE_TIME <  #{endTime} ]]>
+      </if>
+        <if test="classifylist != null">
+    	 and classify_id in 
+    	 <foreach item="item" index="index" collection="classifylist" open="(" separator="," close=")">  
+		  #{item}  
+		</foreach>  
+	 </if>
+       <if test="sidx != null">
+        order by ${sidx} ${sord}
+      </if>
+    </select>
+    
+     <update id="deleteProductByIds" parameterType="java.util.List">
+      <![CDATA[
+        UPDATE product SET isdelete = 1 WHERE pro_id IN
+     ]]>
+     <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+       #{item}  
+     </foreach>  
+  </update>
+</mapper>

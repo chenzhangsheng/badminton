@@ -1,0 +1,5 @@
+redis\RedisBaseDao.class
+service\impl\ProductServiceImpl.class
+service\ProductService.class
+Mapper\ProductMapper.class
+mongo\MongoDao.class
