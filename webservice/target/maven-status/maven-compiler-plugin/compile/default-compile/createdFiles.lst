@@ -1,5 +1,7 @@
+mongo\TitleService.class
 redis\RedisBaseDao.class
 service\impl\ProductServiceImpl.class
 service\ProductService.class
+mongo\impl\TitleServiceimpl.class
 Mapper\ProductMapper.class
-mongo\MongoDao.class
+mongo\MongoBaseDao.class
