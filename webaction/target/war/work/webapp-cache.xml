@@ -84,7 +84,7 @@
               <columnNumber>21</columnNumber>
               <source>
                 <modelId>com.myself.badminton.webaction:web-action:[unknown-version]</modelId>
-                <location>D:\项目资料\羽毛球\badminton\webaction\pom.xml</location>
+                <location>D:\self\羽毛球\badminton\webaction\pom.xml</location>
               </source>
             </org.apache.maven.model.InputLocation>
           </entry>
@@ -1062,7 +1062,7 @@
               <columnNumber>21</columnNumber>
               <source>
                 <modelId>com.myself.badminton:badminton:1.0-SNAPSHOT</modelId>
-                <location>D:\项目资料\羽毛球\badminton\pom.xml</location>
+                <location>D:\self\羽毛球\badminton\pom.xml</location>
               </source>
             </org.apache.maven.model.InputLocation>
           </entry>

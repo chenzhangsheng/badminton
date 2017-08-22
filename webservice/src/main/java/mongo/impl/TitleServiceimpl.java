@@ -1,9 +1,11 @@
 package mongo.impl;
 
+import bean.Article;
 import bean.Title;
 import com.mongodb.BasicDBObject;
 import mongo.MongoBaseDao;
 import mongo.TitleService;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -27,20 +29,21 @@ public class TitleServiceimpl extends MongoBaseDao implements TitleService {
 //        }
     }
 
-    private Criteria createCriteria(Long titleid) {
+    private Criteria createCriteria(Long id) {
         Map<String, Object> eqMap = new HashMap<String, Object>();
-        eqMap.put("titleid", titleid);
+        eqMap.put("classifyId", id);
         return createCriteria(null,null,eqMap,null,null,null,null,null);
     }
 
-    public void insert(Title title) {
-        this.mongoTemplate.insert(title);
+    public void insert(Article title) {
+
+        this.mongoTemplate.save(title);
     }
 
-    public Title get(Long id) {
+    public Article get(Long id) {
         Query query = new Query();
         Criteria criteria = createCriteria(id);
         query.addCriteria(criteria);
-        return this.mongoTemplate.findOne(query, Title.class);
+        return this.mongoTemplate.findOne(query, Article.class);
     }
 }

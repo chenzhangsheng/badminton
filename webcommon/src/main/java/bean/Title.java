@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by zhangshengchen on 2017/8/17.
  */
-@Document(collection = "Title")
+@Document(collection = "Article")
 public class Title {
     @Id
     private Long titleid;

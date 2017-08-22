@@ -2,8 +2,7 @@ package product;
 
 import base.BaseController;
 import base.Product;
-import bean.ResultBean;
-import bean.Title;
+import bean.*;
 import com.github.pagehelper.PageInfo;
 import exception.InvalidRequestRuntimeException;
 import mongo.TitleService;
@@ -47,7 +46,12 @@ public class ProductControler extends BaseController {
 	@ResponseBody
 	public Object selectAdminByParams(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		Title query = (Title) JSONObject.toBean(getPostJSONObject(request), Title.class);
+//		JSONObject testobj = getPostJSONObject(request);
+		Map<String, Class> classMap = new HashMap<String, Class>();
+		//注意key regularCondtionList 应与bean中的元素名一致
+		classMap.put("commentsList", Comment.class);
+		classMap.put("responseList", Response.class);
+		Article query = (Article) JSONObject.toBean(getPostJSONObject(request), Article.class,classMap);
 //		String sidx = getParam("sidx");// 排序字段;
 //		String sord = getParam("sord");// 升序降序;
 //		Product product = new Product();
@@ -62,9 +66,10 @@ public class ProductControler extends BaseController {
 //			map.put("rowCount", oneRecord);// 一页几行
 //			map.put("pageNo", pageNo);
 //			product = productService.selectOne(product);
+
 			titleService.insert(query);
 
-			return new ResultBean(titleService.get(query.getTitleid()),ResultBean.OK,"getProductionList success");
+			return new ResultBean(titleService.get(query.getClassifyId()),ResultBean.OK,"getProductionList success");
 		} catch (Exception e) {
 			log.error("selectProduct error:" + e.getMessage() + "_" + ExceptionUtils.getStackTrace(e));
 			throw new InvalidRequestRuntimeException("getProductionList failure: ",
