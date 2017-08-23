@@ -13,8 +13,8 @@ import java.util.List;
  * Created by zhangshengchen on 2017/8/22.
  */
 @Document(collection = "Article")
-public class Article{
-    private Long _id;
+public class Article extends BaseDO{
+
     private String title;
     private String author;
     private Integer isTop; // 1置顶，0不置顶
@@ -23,15 +23,6 @@ public class Article{
     private Long classifyId;
     private Integer numberRead;
     private String content;
-    private ArrayList<Comment> commentsList;
-
-    public ArrayList<Comment> getCommentsList() {
-        return commentsList;
-    }
-
-    public void setCommentsList(ArrayList<Comment> commentsList) {
-        this.commentsList = commentsList;
-    }
 
     public String getTitle() {
         return title;
@@ -96,14 +87,5 @@ public class Article{
     public void setContent(String content) {
         this.content = content;
     }
-
-    public Long get_id() {
-        return _id;
-    }
-
-    public void set_id(Long _id) {
-        this._id = _id;
-    }
-
 
 }

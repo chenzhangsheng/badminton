@@ -1,10 +1,14 @@
 package mongo;
 
+import bean.SeqInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 
 import java.util.*;
 /**
@@ -28,31 +32,31 @@ public class MongoBaseDao {
         if (gtMap != null && gtMap.size() > 0) {
             _set = gtMap.keySet();
             for (String _s : _set) {
-                listC.add( Criteria.where(_s).gt(gtMap.get(_s)));
+                listC.add( Criteria.where(_s).gt(gtMap.get(_s))); //gt 大于
             }
         }
         if (ltMap != null && ltMap.size() > 0) {
             _set = ltMap.keySet();
             for (String _s : _set) {
-                listC.add(  Criteria.where(_s).lt(ltMap.get(_s)));
+                listC.add(  Criteria.where(_s).lt(ltMap.get(_s)));//lt 小于
             }
         }
         if (eqMap != null && eqMap.size() > 0) {
             _set = eqMap.keySet();
             for (String _s : _set) {
-                listC.add(  Criteria.where(_s).is(eqMap.get(_s)));
+                listC.add(  Criteria.where(_s).is(eqMap.get(_s)));//is 等于
             }
         }
         if (gteMap != null && gteMap.size() > 0) {
             _set = gteMap.keySet();
             for (String _s : _set) {
-                listC.add( Criteria.where(_s).gte(gteMap.get(_s)));
+                listC.add( Criteria.where(_s).gte(gteMap.get(_s))); //gt 大于等于
             }
         }
         if (lteMap != null && lteMap.size() > 0) {
             _set = lteMap.keySet();
             for (String _s : _set) {
-                listC.add(  Criteria.where(_s).lte(lteMap.get(_s)));
+                listC.add(  Criteria.where(_s).lte(lteMap.get(_s))); //gt 小于等于
             }
         }
 
@@ -80,6 +84,17 @@ public class MongoBaseDao {
             c.andOperator(listC.toArray(cs));
         }
         return c;
+    }
+
+    public Long getNextId(String collName) {
+        Query query = new Query(Criteria.where("collName").is(collName));
+        Update update = new Update();
+        update.inc("seqId", 1);
+        FindAndModifyOptions options = new FindAndModifyOptions();
+        options.upsert(true);
+        options.returnNew(true);
+        SeqInfo seq = mongoTemplate.findAndModify(query, update, options, SeqInfo.class);
+        return seq.getSeqId();
     }
 
 }

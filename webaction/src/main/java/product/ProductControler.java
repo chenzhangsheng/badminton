@@ -69,7 +69,7 @@ public class ProductControler extends BaseController {
 
 			titleService.insert(query);
 
-			return new ResultBean(titleService.get(query.getClassifyId()),ResultBean.OK,"getProductionList success");
+			return new ResultBean(titleService.getPage(0,5),ResultBean.OK,"getProductionList success");
 		} catch (Exception e) {
 			log.error("selectProduct error:" + e.getMessage() + "_" + ExceptionUtils.getStackTrace(e));
 			throw new InvalidRequestRuntimeException("getProductionList failure: ",

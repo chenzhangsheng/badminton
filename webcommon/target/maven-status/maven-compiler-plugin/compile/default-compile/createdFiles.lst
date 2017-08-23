@@ -7,6 +7,7 @@ bean\Comment.class
 base\AutoIncKey.class
 base\SaveEventListener.class
 utils\MD5Util.class
+base\PageInfo.class
 utils\Sha1Util.class
 base\BaseDO.class
 bean\Article.class

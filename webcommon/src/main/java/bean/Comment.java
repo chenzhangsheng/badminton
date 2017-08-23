@@ -13,43 +13,28 @@ import java.util.List;
  * Created by zhangshengchen on 2017/8/22.
  */
 
-public class Comment  {
+public class Comment extends BaseDO {
 
-    @Id
-    private Long id = 0L;
     private Integer acticleId;
     private String commentUserName;
     private String commentUserPhone;
     private String commentContent;
     private ArrayList<Response> responseList;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Integer getActicleId() {
         return acticleId;
     }
-
     public void setActicleId(Integer acticleId) {
         this.acticleId = acticleId;
     }
     public String getCommentUserName() {
         return commentUserName;
     }
-
     public void setCommentUserName(String commentUserName) {
         this.commentUserName = commentUserName;
     }
-
     public String getCommentUserPhone() {
         return commentUserPhone;
     }
-
     public void setCommentUserPhone(String commentUserPhone) {
         this.commentUserPhone = commentUserPhone;
     }

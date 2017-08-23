@@ -7,6 +7,8 @@ import java.util.Date;
 
 
 public class BaseDO {
+	@Id
+	private Long id;
 	private Date createTime;
 	private Date updateTime;
 	private Integer isDeleted;
@@ -28,5 +30,6 @@ public class BaseDO {
 	public void setIsDeleted(Integer isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-	
+	public Long getId() {return id;}
+	public void setId(Long id) {this.id = id;}
 }
