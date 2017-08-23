@@ -6,6 +6,7 @@
         <pathsSet class="linked-hash-set">
           <string>index.jsp</string>
           <string>WEB-INF/web.xml</string>
+          <string>WEB-INF/classes/admin/ArticleControler.class</string>
           <string>WEB-INF/classes/conf/applicationContext-mongodb.xml</string>
           <string>WEB-INF/classes/conf/applicationContext-redis.xml</string>
           <string>WEB-INF/classes/conf/applicationContext.xml</string>
@@ -31,6 +32,10 @@
           <string>WEB-INF/lib/xstream-1.4.9.jar</string>
           <string>WEB-INF/lib/xmlpull-1.1.3.1.jar</string>
           <string>WEB-INF/lib/xpp3_min-1.1.4c.jar</string>
+          <string>WEB-INF/lib/httpclient-4.5.2.jar</string>
+          <string>WEB-INF/lib/httpcore-4.4.4.jar</string>
+          <string>WEB-INF/lib/commons-codec-1.9.jar</string>
+          <string>WEB-INF/lib/httpmime-4.2.1.jar</string>
           <string>WEB-INF/lib/spring-core-4.0.0.RELEASE.jar</string>
           <string>WEB-INF/lib/commons-logging-1.1.1.jar</string>
           <string>WEB-INF/lib/spring-beans-4.0.0.RELEASE.jar</string>
@@ -84,7 +89,7 @@
               <columnNumber>21</columnNumber>
               <source>
                 <modelId>com.myself.badminton.webaction:web-action:[unknown-version]</modelId>
-                <location>D:\项目资料\羽毛球\badminton\webaction\pom.xml</location>
+                <location>D:\self\羽毛球\badminton\webaction\pom.xml</location>
               </source>
             </org.apache.maven.model.InputLocation>
           </entry>
@@ -1062,7 +1067,7 @@
               <columnNumber>21</columnNumber>
               <source>
                 <modelId>com.myself.badminton:badminton:1.0-SNAPSHOT</modelId>
-                <location>D:\项目资料\羽毛球\badminton\pom.xml</location>
+                <location>D:\self\羽毛球\badminton\pom.xml</location>
               </source>
             </org.apache.maven.model.InputLocation>
           </entry>

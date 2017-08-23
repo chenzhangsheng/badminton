@@ -49,8 +49,8 @@ public class ProductControler extends BaseController {
 //		JSONObject testobj = getPostJSONObject(request);
 		Map<String, Class> classMap = new HashMap<String, Class>();
 		//注意key regularCondtionList 应与bean中的元素名一致
-		classMap.put("commentsList", Comment.class);
-		classMap.put("responseList", Response.class);
+//		classMap.put("commentsList", Comment.class);
+//		classMap.put("responseList", Response.class);
 		Article query = (Article) JSONObject.toBean(getPostJSONObject(request), Article.class,classMap);
 //		String sidx = getParam("sidx");// 排序字段;
 //		String sord = getParam("sord");// 升序降序;

@@ -1,18 +1,15 @@
 package bean;
 
-import base.AutoIncKey;
 import base.BaseDO;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by zhangshengchen on 2017/8/22.
  */
 
+@Document(collection = "Comment")
 public class Comment extends BaseDO {
 
     private Integer acticleId;

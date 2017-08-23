@@ -33,7 +33,7 @@
 		<!--<context:include-filter type="regex" expression="com.myself.badminton.webservice.service.*"/>-->
 		<!--<context:include-filter type="regex" expression="com.myself.badminton.webservice.mongo.*"/>-->
 	<!--</context:component-scan>-->
-	<context:component-scan base-package="product" />
+	<context:component-scan base-package="admin" />
 	<context:component-scan base-package="service" />
 	<context:component-scan base-package="mongo"/>
 	<!-- 通过注解，把URL映射到Controller上，该标签默认注册DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter -->

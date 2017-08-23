@@ -1,8 +1,10 @@
 package utils;
 
 import exception.PlatformRuntimeException;
+import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
@@ -21,6 +23,17 @@ public class JsonUtil {
             throw new PlatformRuntimeException("parse json error, json=" + str + ", class=" + cls.getName(), var4);
         } catch (IOException var5) {
             throw new PlatformRuntimeException("parse json error, json=" + str + ", class=" + cls.getName(), var5);
+        }
+    }
+    public static String getJsonFromObject(Object object) {
+        try {
+            return objectMapper.writeValueAsString(object);
+        } catch (JsonGenerationException var2) {
+            throw new PlatformRuntimeException("get json error", var2);
+        } catch (JsonMappingException var3) {
+            throw new PlatformRuntimeException("get json error", var3);
+        } catch (IOException var4) {
+            throw new PlatformRuntimeException("get json error", var4);
         }
     }
 }
