@@ -2,9 +2,11 @@ package admin;
 
 import base.BaseController;
 import base.PageInfo;
+import bean.Admin;
 import bean.Article;
 import bean.ResultBean;
 import exception.InvalidRequestRuntimeException;
+import mongo.AdminService;
 import mongo.ArticleService;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -28,7 +30,6 @@ public class ArticleControler extends BaseController {
 
     @Autowired
     private ArticleService articleService;
-
     /**
      * 后台查询文章
      *
@@ -46,20 +47,20 @@ public class ArticleControler extends BaseController {
 			int pageNo = 0;// 第几行
         try {
             if(query.getPageSize()== 0){
-////                return new ResultBean("",ResultBean.NOT_FOUND,"  input error : need PageSize");
                 throw new InvalidRequestRuntimeException("input error : PageSize need >0",1111111,
                         HttpStatus.UNPROCESSABLE_ENTITY);
             }
             oneRecord=query.getPageSize();
             pageNo=query.getPageNum();
             PageInfo<Article> articlePageInfo=articleService.getPage(query,pageNo,oneRecord);
-            return new ResultBean(articlePageInfo,ResultBean.OK,"getArticleListsuccess");
+            return new ResultBean(articlePageInfo,ResultBean.OK,"getArticleList success");
         } catch (InvalidRequestRuntimeException e) {
             log.error("selectArticle error:" + e.getMessage() + "_" + ExceptionUtils.getStackTrace(e));
             return new ResultBean("",e.getErr(),e.getMessage());
         }catch (Exception e){
-            return new ResultBean("",500,"selectArticle error:" +e.getMessage()+ "_" + ExceptionUtils.getStackTrace(e));
+            return new ResultBean("",ResultBean.SYS_ERROR,"selectArticle error:" +e.getMessage()+ "_" + ExceptionUtils.getStackTrace(e));
         }
 
     }
+
 }

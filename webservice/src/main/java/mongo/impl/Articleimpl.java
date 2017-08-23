@@ -2,6 +2,7 @@ package mongo.impl;
 
 import base.PageInfo;
 import bean.Article;
+import bean.ResultBean;
 import exception.InvalidRequestRuntimeException;
 import mongo.ArticleService;
 import mongo.MongoBaseDao;
@@ -35,7 +36,8 @@ public class Articleimpl extends MongoBaseDao implements ArticleService {
     public void update(Article article){
         Query query = new Query();
         if(article.getId() == null){
-            throw new InvalidRequestRuntimeException("input error : need acticle_id");
+            throw new InvalidRequestRuntimeException("input error : need acticle_id", ResultBean.INVALID_REQUST, HttpStatus.UNPROCESSABLE_ENTITY);
+
         }
         Criteria criteria = createCriteria(article.getId());
         query.addCriteria(criteria);

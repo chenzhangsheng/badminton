@@ -68,23 +68,6 @@
             <version>1.6.3.RELEASE</version>
         </dependency>
 
-        <!-- httpclient  test-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.httpcomponents</groupId>-->
-            <!--<artifactId>httpcore</artifactId>-->
-            <!--<version>4.3.3</version>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>4.2.1</version>
-        </dependency>
-
     </dependencies>
     <!--构建项目 -->
     <build>

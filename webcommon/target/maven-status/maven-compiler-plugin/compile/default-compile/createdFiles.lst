@@ -2,11 +2,8 @@ bean\SeqInfo.class
 utils\DateUtil$1.class
 exception\PlatformRequestRuntimeException.class
 query\ProductQuery.class
-utils\http\HttpsClient.class
 bean\ReturnMessage.class
-utils\http\HttpsClient$MySSLSocketFactory$1.class
 bean\Comment.class
-utils\http\HttpsClient$MySSLSocketFactory.class
 utils\MD5Util.class
 base\PageInfo.class
 utils\Sha1Util.class
@@ -15,14 +12,12 @@ bean\Article.class
 exception\PlatformRuntimeException.class
 utils\DateUtil.class
 exception\InvalidRequestRuntimeException.class
-utils\http\HttpRequestManager.class
 bean\ResultBean.class
+bean\Admin.class
 utils\JsonUtil.class
 base\BaseController.class
-utils\http\HttpDelete.class
 bean\Title.class
 utils\ST.class
-utils\http\HttpRequestManager$1.class
 bean\Response.class
 utils\FileUtil.class
 base\Product.class
