@@ -13,6 +13,7 @@ import mongo.AdminService;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,12 +40,15 @@ public class LoginController extends BaseController {
         try {
             Admin query = (Admin) JSONObject.toBean(getPostJSONObject(request), Admin.class);
             if (query.getAccount() == null) {
-                return new ResultBean("", ResultBean.NOT_FOUND, "userAccount is null");
+                throw new InvalidRequestRuntimeException("userAccount is null",ResultBean.INVALID_REQUST,
+                        HttpStatus.UNPROCESSABLE_ENTITY);
             }
             if (query.getPassword() == null) {
-                return new ResultBean("", ResultBean.NOT_FOUND, "Password is null");
+                throw new InvalidRequestRuntimeException("Password is null",ResultBean.INVALID_REQUST,
+                        HttpStatus.UNPROCESSABLE_ENTITY);
             }
             query= adminService.Login(query);
+            session.setAttribute("SESSION_USER", query);
             return new ResultBean(query,ResultBean.OK,"adminLogin success");
         } catch (InvalidRequestRuntimeException e) {
             log.error("adminLogin error:" + e.getMessage() + "_" + ExceptionUtils.getStackTrace(e));

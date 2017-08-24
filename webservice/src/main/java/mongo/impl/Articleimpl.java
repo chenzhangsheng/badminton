@@ -55,7 +55,6 @@ public class Articleimpl extends MongoBaseDao implements ArticleService {
         Map<String, String> regexMap = new HashMap<String, String>();
         if(article.getClassifyId()!= null){
             eqMap.put("classifyId", article.getClassifyId());
-
         }
         if(article.getTitle()!= null){
             regexMap.put("title",article.getTitle());

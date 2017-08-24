@@ -18,6 +18,7 @@ utils\JsonUtil.class
 base\BaseController.class
 bean\Title.class
 utils\ST.class
+base\SessionTimeoutInterceptor.class
 bean\Response.class
 utils\FileUtil.class
 base\Product.class

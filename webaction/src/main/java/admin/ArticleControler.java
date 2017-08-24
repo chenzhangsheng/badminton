@@ -43,11 +43,12 @@ public class ArticleControler extends BaseController {
     public Object selectArticleParams(HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
         ArticleQuery query = (ArticleQuery) JSONObject.toBean(getPostJSONObject(request), ArticleQuery.class);
+//        System.out.println("request="+request.)
             int oneRecord = 10;// 一页几行
 			int pageNo = 0;// 第几行
         try {
             if(query.getPageSize()== 0){
-                throw new InvalidRequestRuntimeException("input error : PageSize need >0",1111111,
+                throw new InvalidRequestRuntimeException("input error : PageSize need >0",ResultBean.INVALID_REQUST,
                         HttpStatus.UNPROCESSABLE_ENTITY);
             }
             oneRecord=query.getPageSize();

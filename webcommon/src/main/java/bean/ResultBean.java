@@ -13,6 +13,7 @@ public class ResultBean {
     public static final Integer INVALID_REQUST = Integer.valueOf(422);
     public static final Integer SYS_ERROR = Integer.valueOf(500);
     public static final Integer SUCCESS = Integer.valueOf(200);
+    public static final Integer TIMEOUT = Integer.valueOf(504);
     public static final ResultBean SUCCESS_OK;
     public static final Integer INVALID_LIVE_STATUS_ERR_CODE;
     public static final Integer ACCESS_JUMP_FAILED_ERR_CODE;
