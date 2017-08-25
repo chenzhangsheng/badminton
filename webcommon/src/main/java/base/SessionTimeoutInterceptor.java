@@ -3,6 +3,7 @@ package base;
 import bean.Admin;
 import bean.ResultBean;
 import exception.InvalidRequestRuntimeException;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +39,7 @@ public class SessionTimeoutInterceptor  implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1,Object arg2) throws Exception {
         String requestUrl = arg0.getRequestURI().replace(arg0.getContextPath(), "");
 
-        //angularjs跨域请求限制
+        //js跨域请求限制
         arg1.setHeader("Access-Control-Allow-Origin", "*");
         arg1.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         arg1.setHeader("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With");
@@ -78,8 +79,10 @@ public class SessionTimeoutInterceptor  implements HandlerInterceptor{
                 arg1.setStatus(975);
                 return false;
             }else{
+//                arg1.sendRedirect("http://lab.nbuxinxiren.cn/");
 //                throw new InvalidRequestRuntimeException("当前登陆超时,请重新登", ResultBean.TIMEOUT,
 //                        HttpStatus.GATEWAY_TIMEOUT);
+//                return false;
                 return true;
             }
         }

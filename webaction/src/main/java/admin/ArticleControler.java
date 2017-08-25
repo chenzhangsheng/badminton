@@ -20,6 +20,11 @@ import query.ArticleQuery;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.Map;
 
 /**
  * Created by zhangshengchen on 2017/8/23.
@@ -38,12 +43,11 @@ public class ArticleControler extends BaseController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/selectArticle", method = { RequestMethod.POST })
+    @RequestMapping(value = "/selectArticle")
     @ResponseBody
     public Object selectArticleParams(HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
         ArticleQuery query = (ArticleQuery) JSONObject.toBean(getPostJSONObject(request), ArticleQuery.class);
-//        System.out.println("request="+request.)
             int oneRecord = 10;// 一页几行
 			int pageNo = 0;// 第几行
         try {
@@ -63,5 +67,7 @@ public class ArticleControler extends BaseController {
         }
 
     }
+
+
 
 }

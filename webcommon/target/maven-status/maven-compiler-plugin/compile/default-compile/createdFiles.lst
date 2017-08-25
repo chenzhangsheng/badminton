@@ -16,9 +16,9 @@ bean\ResultBean.class
 bean\Admin.class
 utils\JsonUtil.class
 base\BaseController.class
-bean\Title.class
 utils\ST.class
 base\SessionTimeoutInterceptor.class
+utils\UserIpUtil.class
 bean\Response.class
 utils\FileUtil.class
 base\Product.class
