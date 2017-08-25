@@ -70,8 +70,7 @@
 		<bean class="base.SessionTimeoutInterceptor">
 			<property name="allowUrls">
 				<list>
-					<value>/web/loginUser.do</value>
-					<value>/web/exit.do</value>
+
 				</list>
 			</property>
 		</bean>
