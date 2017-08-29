@@ -72,7 +72,6 @@
             <artifactId>spring-data-mongodb</artifactId>
             <version>1.6.3.RELEASE</version>
         </dependency>
-
     </dependencies>
     <!--构建项目 -->
     <build>
