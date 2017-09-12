@@ -61,6 +61,7 @@ public class ArticleControler extends BaseController {
         int count = 0;
         query.setPageSize(10);
         query.setPageNum(0);
+        //asdsadsadsadsadsad
         int oneRecord = 10;// 一页几行
         int pageNo = 0;// 第几行
         try {
@@ -97,6 +98,7 @@ public class ArticleControler extends BaseController {
     public Object addArticle(HttpServletRequest request,
                              HttpServletResponse response) throws Exception {
         //创建一个合适的Configration对象
+        //asdsadsadsadasdsadasd
         try {
             ArticleQuery query = (ArticleQuery) JSONObject.toBean(getPostJSONObject(request), ArticleQuery.class);
             Template template = Freemark.getActicleTemplate(request);
