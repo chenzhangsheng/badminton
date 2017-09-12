@@ -61,7 +61,6 @@ public class ArticleControler extends BaseController {
         int count = 0;
         query.setPageSize(10);
         query.setPageNum(0);
-        //asdsadsadsadsadsad
         int oneRecord = 10;// 一页几行
         int pageNo = 0;// 第几行
         try {
@@ -74,7 +73,7 @@ public class ArticleControler extends BaseController {
             count++;
             System.out.println("第"+count+"次进入测试");
             System.out.println(redisTest.getKey("key"));
-            //asdsadsadsadsadsadsadsad pptv改动
+            //asdsadsadsadsadsadsadsad 合并的结果
             PageInfo<Article> articlePageInfo = articleService.getPage(query, pageNo, oneRecord);
             return new ResultBean(articlePageInfo, ResultBean.OK, "getArticleList success");
         } catch (InvalidRequestRuntimeException e) {
@@ -99,7 +98,6 @@ public class ArticleControler extends BaseController {
     public Object addArticle(HttpServletRequest request,
                              HttpServletResponse response) throws Exception {
         //创建一个合适的Configration对象
-        //asdsadsadsadasdsadasd
         try {
             ArticleQuery query = (ArticleQuery) JSONObject.toBean(getPostJSONObject(request), ArticleQuery.class);
             Template template = Freemark.getActicleTemplate(request);
@@ -111,7 +109,7 @@ public class ArticleControler extends BaseController {
             template.process(paramMap, writer);
             query.setContentUrl(data);
             articleService.insert(query);
-            //asdadsadsadsadsadasdsadsad pptv改动
+            //asdadsadsadsadsadasdsadsad 合并的结果
             return new ResultBean("", ResultBean.OK,"addArticle Success" );
         } catch (InvalidRequestRuntimeException e) {
             log.error("addArticle error:" + e.getMessage() + "_" + ExceptionUtils.getStackTrace(e));
