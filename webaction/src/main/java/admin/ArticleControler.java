@@ -74,7 +74,7 @@ public class ArticleControler extends BaseController {
             count++;
             System.out.println("第"+count+"次进入测试");
             System.out.println(redisTest.getKey("key"));
-            //asdsadsadsadsadsadsadsad
+            //asdsadsadsadsadsadsadsad pptv改动
             PageInfo<Article> articlePageInfo = articleService.getPage(query, pageNo, oneRecord);
             return new ResultBean(articlePageInfo, ResultBean.OK, "getArticleList success");
         } catch (InvalidRequestRuntimeException e) {
@@ -111,7 +111,7 @@ public class ArticleControler extends BaseController {
             template.process(paramMap, writer);
             query.setContentUrl(data);
             articleService.insert(query);
-            //asdadsadsadsadsadasdsadsad
+            //asdadsadsadsadsadasdsadsad pptv改动
             return new ResultBean("", ResultBean.OK,"addArticle Success" );
         } catch (InvalidRequestRuntimeException e) {
             log.error("addArticle error:" + e.getMessage() + "_" + ExceptionUtils.getStackTrace(e));
