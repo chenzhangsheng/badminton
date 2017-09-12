@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class RedisBaseDao {
 
+
     private List<JedisPool> jedisPools;  //只有一个jedisPool
     private Integer retryTimes = Integer.valueOf(3);
 

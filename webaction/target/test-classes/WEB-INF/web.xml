@@ -34,6 +34,7 @@
     <param-value>
       classpath:conf/applicationContext.xml
       classpath:conf/applicationContext-mongodb.xml
+      classpath:conf/applicationContext-redis.xml
     </param-value>
   </context-param>
   <servlet>

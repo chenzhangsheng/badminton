@@ -2,8 +2,10 @@ D:\self\羽毛球\badminton\webservice\src\main\java\service\ProductService.java
 D:\self\羽毛球\badminton\webservice\src\main\java\mongo\ArticleService.java
 D:\self\羽毛球\badminton\webservice\src\main\java\mongo\impl\Articleimpl.java
 D:\self\羽毛球\badminton\webservice\src\main\java\mongo\impl\AdminServiceimpl.java
+D:\self\羽毛球\badminton\webservice\src\main\java\redis\RedisTestimpl.java
 D:\self\羽毛球\badminton\webservice\src\main\java\mongo\AdminService.java
 D:\self\羽毛球\badminton\webservice\src\main\java\redis\RedisBaseDao.java
+D:\self\羽毛球\badminton\webservice\src\main\java\redis\RedisTest.java
 D:\self\羽毛球\badminton\webservice\src\main\java\Mapper\ProductMapper.java
 D:\self\羽毛球\badminton\webservice\src\main\java\mongo\MongoBaseDao.java
 D:\self\羽毛球\badminton\webservice\src\main\java\service\impl\ProductServiceImpl.java

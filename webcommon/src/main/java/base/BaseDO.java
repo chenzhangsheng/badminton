@@ -11,6 +11,7 @@ public class BaseDO {
 	private Long id;
 	private Date createTime;
 	private Date updateTime;
+	@JsonIgnore
 	private Integer isDeleted;
 	public Date getCreateTime() {
 		return createTime;

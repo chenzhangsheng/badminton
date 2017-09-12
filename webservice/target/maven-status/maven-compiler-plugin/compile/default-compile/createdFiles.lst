@@ -5,5 +5,7 @@ mongo\ArticleService.class
 service\impl\ProductServiceImpl.class
 service\ProductService.class
 mongo\AdminService.class
+redis\RedisTest.class
 Mapper\ProductMapper.class
+redis\RedisTestimpl.class
 mongo\MongoBaseDao.class

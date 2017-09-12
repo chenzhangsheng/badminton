@@ -16,7 +16,7 @@ public class Article extends BaseDO{
     private String abstracts;
     private Long classifyId;
     private Integer numberRead;
-    private String content;
+    private String contentUrl;
 
     public String getTitle() {
         return title;
@@ -74,12 +74,8 @@ public class Article extends BaseDO{
         this.numberRead = numberRead;
     }
 
-    public String getContent() {
-        return content;
-    }
+    public String getContentUrl() {return contentUrl;}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+    public void setContentUrl(String contentUrl) {this.contentUrl = contentUrl;}
 
 }

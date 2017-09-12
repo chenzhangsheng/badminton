@@ -28,10 +28,11 @@ public class Articleimpl extends MongoBaseDao implements ArticleService {
         return createCriteria(null,null,eqMap,null,null,null,null,null);
     }
 
-    public void insert(Article article) {
-        Long id=getNextId(article.getClass().getSimpleName());
+    public Long insert(ArticleQuery article) {
+        Long id=getNextId(Article.class.getSimpleName());
         article.setId(id);
         this.mongoTemplate.save(article);
+        return id;
     }
     public void update(Article article){
         Query query = new Query();

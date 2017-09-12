@@ -4,11 +4,13 @@
       <string>currentBuild</string>
       <path-set>
         <pathsSet class="linked-hash-set">
+          <string>freemark/article.html</string>
           <string>index.jsp</string>
           <string>WEB-INF/web.xml</string>
           <string>WEB-INF/classes/admin/ArticleControler.class</string>
           <string>WEB-INF/classes/admin/LoginController.class</string>
           <string>WEB-INF/classes/conf/applicationContext-mongodb.xml</string>
+          <string>WEB-INF/classes/conf/applicationContext-rabbitmq.xml</string>
           <string>WEB-INF/classes/conf/applicationContext-redis.xml</string>
           <string>WEB-INF/classes/conf/applicationContext.xml</string>
           <string>WEB-INF/classes/conf/context-dispatcher.xml</string>
@@ -17,6 +19,7 @@
           <string>WEB-INF/classes/properties/constant.properties</string>
           <string>WEB-INF/classes/properties/jdbc.properties</string>
           <string>WEB-INF/classes/properties/log4j.properties</string>
+          <string>WEB-INF/classes/properties/rabbitmq.properties</string>
           <string>WEB-INF/lib/web-service-1.0-SNAPSHOT.jar</string>
           <string>WEB-INF/lib/jedis-2.7.2.jar</string>
           <string>WEB-INF/lib/commons-pool2-2.3.jar</string>
@@ -26,6 +29,9 @@
           <string>WEB-INF/lib/jcl-over-slf4j-1.7.12.jar</string>
           <string>WEB-INF/lib/mybatis-3.2.8.jar</string>
           <string>WEB-INF/lib/mapper-3.1.0.jar</string>
+          <string>WEB-INF/lib/spring-rabbit-1.2.0.RELEASE.jar</string>
+          <string>WEB-INF/lib/amqp-client-3.1.3.jar</string>
+          <string>WEB-INF/lib/spring-amqp-1.2.0.RELEASE.jar</string>
           <string>WEB-INF/lib/web-common-1.0-SNAPSHOT.jar</string>
           <string>WEB-INF/lib/javax.servlet.-servlet-api-3.0-alpha-1.jar</string>
           <string>WEB-INF/lib/commons-lang-2.6.jar</string>
@@ -60,9 +66,10 @@
           <string>WEB-INF/lib/commons-beanutils-1.8.0.jar</string>
           <string>WEB-INF/lib/commons-collections-3.2.1.jar</string>
           <string>WEB-INF/lib/ezmorph-1.0.6.jar</string>
-          <string>WEB-INF/lib/jackson-core-asl-1.9.13.jar</string>
           <string>WEB-INF/lib/jackson-mapper-asl-1.9.13.jar</string>
+          <string>WEB-INF/lib/jackson-core-asl-1.9.13.jar</string>
           <string>WEB-INF/lib/mysql-connector-java-5.1.34.jar</string>
+          <string>WEB-INF/lib/freemarker-2.3.23.jar</string>
           <string>WEB-INF/lib/commons-lang3-3.1.jar</string>
         </pathsSet>
       </path-set>
@@ -912,7 +919,7 @@
     <org.apache.maven.plugin.war.util.DependencyInfo>
       <dependency>
         <groupId>org.codehaus.jackson</groupId>
-        <artifactId>jackson-core-asl</artifactId>
+        <artifactId>jackson-mapper-asl</artifactId>
         <version>1.9.13</version>
         <type>jar</type>
         <scope>compile</scope>
@@ -951,52 +958,6 @@
             </org.apache.maven.model.InputLocation>
           </entry>
         </locations>
-        <managementKey>org.codehaus.jackson:jackson-core-asl:jar</managementKey>
-      </dependency>
-      <targetFileName>jackson-core-asl-1.9.13.jar</targetFileName>
-    </org.apache.maven.plugin.war.util.DependencyInfo>
-    <org.apache.maven.plugin.war.util.DependencyInfo>
-      <dependency>
-        <groupId>org.codehaus.jackson</groupId>
-        <artifactId>jackson-mapper-asl</artifactId>
-        <version>1.9.13</version>
-        <type>jar</type>
-        <scope>compile</scope>
-        <exclusions/>
-        <locations class="linked-hash-map">
-          <entry>
-            <string></string>
-            <org.apache.maven.model.InputLocation>
-              <lineNumber>124</lineNumber>
-              <columnNumber>21</columnNumber>
-              <source reference="../../../../../../org.apache.maven.plugin.war.util.DependencyInfo/dependency/locations/entry/org.apache.maven.model.InputLocation/source"/>
-            </org.apache.maven.model.InputLocation>
-          </entry>
-          <entry>
-            <string>groupId</string>
-            <org.apache.maven.model.InputLocation>
-              <lineNumber>125</lineNumber>
-              <columnNumber>22</columnNumber>
-              <source reference="../../../../../../org.apache.maven.plugin.war.util.DependencyInfo/dependency/locations/entry/org.apache.maven.model.InputLocation/source"/>
-            </org.apache.maven.model.InputLocation>
-          </entry>
-          <entry>
-            <string>artifactId</string>
-            <org.apache.maven.model.InputLocation>
-              <lineNumber>126</lineNumber>
-              <columnNumber>25</columnNumber>
-              <source reference="../../../../../../org.apache.maven.plugin.war.util.DependencyInfo/dependency/locations/entry/org.apache.maven.model.InputLocation/source"/>
-            </org.apache.maven.model.InputLocation>
-          </entry>
-          <entry>
-            <string>version</string>
-            <org.apache.maven.model.InputLocation>
-              <lineNumber>127</lineNumber>
-              <columnNumber>22</columnNumber>
-              <source reference="../../../../../../org.apache.maven.plugin.war.util.DependencyInfo/dependency/locations/entry/org.apache.maven.model.InputLocation/source"/>
-            </org.apache.maven.model.InputLocation>
-          </entry>
-        </locations>
         <managementKey>org.codehaus.jackson:jackson-mapper-asl:jar</managementKey>
       </dependency>
       <targetFileName>jackson-mapper-asl-1.9.13.jar</targetFileName>
@@ -1006,6 +967,52 @@
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
         <version>5.1.34</version>
+        <type>jar</type>
+        <scope>compile</scope>
+        <exclusions/>
+        <locations class="linked-hash-map">
+          <entry>
+            <string></string>
+            <org.apache.maven.model.InputLocation>
+              <lineNumber>125</lineNumber>
+              <columnNumber>21</columnNumber>
+              <source reference="../../../../../../org.apache.maven.plugin.war.util.DependencyInfo/dependency/locations/entry/org.apache.maven.model.InputLocation/source"/>
+            </org.apache.maven.model.InputLocation>
+          </entry>
+          <entry>
+            <string>groupId</string>
+            <org.apache.maven.model.InputLocation>
+              <lineNumber>126</lineNumber>
+              <columnNumber>22</columnNumber>
+              <source reference="../../../../../../org.apache.maven.plugin.war.util.DependencyInfo/dependency/locations/entry/org.apache.maven.model.InputLocation/source"/>
+            </org.apache.maven.model.InputLocation>
+          </entry>
+          <entry>
+            <string>artifactId</string>
+            <org.apache.maven.model.InputLocation>
+              <lineNumber>127</lineNumber>
+              <columnNumber>25</columnNumber>
+              <source reference="../../../../../../org.apache.maven.plugin.war.util.DependencyInfo/dependency/locations/entry/org.apache.maven.model.InputLocation/source"/>
+            </org.apache.maven.model.InputLocation>
+          </entry>
+          <entry>
+            <string>version</string>
+            <org.apache.maven.model.InputLocation>
+              <lineNumber>128</lineNumber>
+              <columnNumber>22</columnNumber>
+              <source reference="../../../../../../org.apache.maven.plugin.war.util.DependencyInfo/dependency/locations/entry/org.apache.maven.model.InputLocation/source"/>
+            </org.apache.maven.model.InputLocation>
+          </entry>
+        </locations>
+        <managementKey>mysql:mysql-connector-java:jar</managementKey>
+      </dependency>
+      <targetFileName>mysql-connector-java-5.1.34.jar</targetFileName>
+    </org.apache.maven.plugin.war.util.DependencyInfo>
+    <org.apache.maven.plugin.war.util.DependencyInfo>
+      <dependency>
+        <groupId>org.freemarker</groupId>
+        <artifactId>freemarker</artifactId>
+        <version>2.3.23</version>
         <type>jar</type>
         <scope>compile</scope>
         <exclusions/>
@@ -1043,9 +1050,9 @@
             </org.apache.maven.model.InputLocation>
           </entry>
         </locations>
-        <managementKey>mysql:mysql-connector-java:jar</managementKey>
+        <managementKey>org.freemarker:freemarker:jar</managementKey>
       </dependency>
-      <targetFileName>mysql-connector-java-5.1.34.jar</targetFileName>
+      <targetFileName>freemarker-2.3.23.jar</targetFileName>
     </org.apache.maven.plugin.war.util.DependencyInfo>
     <org.apache.maven.plugin.war.util.DependencyInfo>
       <dependency>

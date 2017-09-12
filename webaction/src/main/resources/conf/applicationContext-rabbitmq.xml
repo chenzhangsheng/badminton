@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	   xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/rabbit
+            http://www.springframework.org/schema/rabbit/spring-rabbit-1.2.xsd">
+
+	<!-- 引入jdbc配置文件 -->
+	<!--<context:property-placeholder location="classpath:properties/rabbitmq.properties" />-->
+	<!--&lt;!&ndash;Send epg Msg &ndash;&gt;-->
+	<!--<rabbit:connection-factory id="epgChannelMQConnectionFactory"-->
+							   <!--addresses="${epg.channel.rabbitmq.url}"-->
+							   <!--virtual-host="${epg.channel.rabbitmq.vhost}"-->
+							   <!--username="${epg.channel.rabbitmq.username}"-->
+							   <!--password="${epg.channel.rabbitmq.password}"-->
+							   <!--channel-cache-size="25"-->
+	<!--/>-->
+
+	<!--<rabbit:admin id="toepgMqAdmin" connection-factory="epgChannelMQConnectionFactory" />-->
+	<!--<rabbit:queue id="toepg.queue" name="${epg.channel.rabbitmq.queue}" declared-by="toepgMqAdmin"/>-->
+	<!--<rabbit:topic-exchange name="${epg.channel.rabbitmq.exchange}" durable="true" id="toepg.exchange"-->
+						   <!--declared-by="toepgMqAdmin" >-->
+		<!--<rabbit:bindings>-->
+			<!--<rabbit:binding queue="toepg.queue" pattern="#" />-->
+		<!--</rabbit:bindings>-->
+	<!--</rabbit:topic-exchange>-->
+
+	<!--<rabbit:template id="toepgMqTemplate"-->
+					 <!--connection-factory="epgChannelMQConnectionFactory"-->
+					 <!--message-converter="sendEpgMsgConvert"-->
+					 <!--exchange="${epg.channel.rabbitmq.exchange}"-->
+					 <!--queue="${epg.channel.rabbitmq.queue}"-->
+	<!--/>-->
+
+	<!--<bean id="sendEpgMsgConvert" class="com.pptv.cloud.cp.cc.common.bean.msg.CommonSendMsgConvert">-->
+		<!--<property name="bean2Message" ref="epgBean2Message"/>-->
+	<!--</bean>-->
+
+	<!--<bean id="epgBean2Message" class="com.pptv.cloud.cp.common.msg.convert.Bean2MessageImpl"/>-->
+
+	<!--<bean id="epgMessageSenderImpl" class="com.pptv.cloud.cp.common.msg.service.impl.AmqpMessageSenderImpl">-->
+		<!--<property name="amqpTemplate" ref="toepgMqTemplate" />-->
+	<!--</bean>-->
+
+	<!--<bean id="epgChannelMsgSendManager" class="com.pplive.ppcloud.persistence.manager.msg.epg.send.EpgChannelMsgSendManager">-->
+		<!--<property name="messageSender" ref="epgMessageSenderImpl" />-->
+	<!--</bean>-->
+</beans>

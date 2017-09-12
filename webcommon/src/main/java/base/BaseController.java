@@ -5,15 +5,21 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+
+import bean.ResultBean;
 import bean.ReturnMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import exception.InvalidRequestRuntimeException;
+import exception.PlatformRequestRuntimeException;
+import exception.PlatformRuntimeException;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -127,5 +133,68 @@ public class BaseController {
         return new JSONObject();
     }
 
+    public ExceptionErrorMessage getExceptionErrorMessage(Exception ex) {
+        int errCode = -1;
+//		HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        HttpStatus httpStatus = HttpStatus.OK;
+        String mString = "";
+        if (ex instanceof InvalidRequestRuntimeException) {
+            InvalidRequestRuntimeException exception = (InvalidRequestRuntimeException)ex;
+            errCode = exception.getErr();
+//			httpStatus = exception.getHttpStatus();
+            mString =  exception.getMessage();
+        } else if (ex instanceof PlatformRequestRuntimeException) {
+            PlatformRequestRuntimeException exception = (PlatformRequestRuntimeException)ex;
+            errCode = exception.getErr();
+            mString = exception.getMessage();
+        }  else if (ex instanceof PlatformRuntimeException) {
+            PlatformRuntimeException exception = (PlatformRuntimeException)ex;
+            errCode = ResultBean.SYS_ERROR;
+            mString = exception.getMessage();
+        } else {
+//            errCode = ErrConstatns.API3_SERVER_ERROR;
+//            mString = ErrConstatns.getCodeMessage(ErrConstatns.API3_SERVER_ERROR);
+        }
 
+        return new ExceptionErrorMessage(errCode, httpStatus, mString);
+    }
+
+    /**
+     *  异常信息实体
+     * @author chaogao
+     */
+    public class ExceptionErrorMessage {
+        private int errCode = -1;
+        private HttpStatus httpStatus = HttpStatus.OK;
+        private String errMsg = "";
+
+        public ExceptionErrorMessage(int errCode, HttpStatus httpStatus, String errMsg) {
+            super();
+            this.errCode = errCode;
+            this.httpStatus = httpStatus;
+            this.errMsg = errMsg;
+        }
+        public int getErrCode() {
+            return errCode;
+        }
+        public void setErrCode(int errCode) {
+            this.errCode = errCode;
+        }
+        public HttpStatus getHttpStatus() {
+            return httpStatus;
+        }
+        public void setHttpStatus(HttpStatus httpStatus) {
+            this.httpStatus = httpStatus;
+        }
+
+        public String getErrMsg() {
+            return errMsg;
+        }
+
+        public void setErrMsg(String errMsg) {
+            this.errMsg = errMsg;
+        }
+
+
+    }
 }

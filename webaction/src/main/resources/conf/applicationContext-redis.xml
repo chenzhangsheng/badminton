@@ -14,32 +14,36 @@
             http://www.springframework.org/schema/tx/spring-tx.xsd
             http://www.springframework.org/schema/jee
      		http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+	<!-- 引入jdbc配置文件 -->
+	<context:property-placeholder location="classpath:properties/jdbc.properties" />
 
-	<!--<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">-->
-		<!--<property name="maxIdle" value="100" />-->
-		<!--<property name="minIdle" value="30" />-->
-		<!--<property name="maxTotal" value="300" />-->
-		<!--<property name="maxWaitMillis" value="1000" />-->
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="100" />
+		<property name="minIdle" value="30" />
+		<property name="maxTotal" value="300" />
+		<property name="maxWaitMillis" value="1000" />
+	</bean>
+
+	<bean id="channelSearchRedisBaseDao" class="redis.RedisBaseDao">
+		<property name="jedisPools" ref="channelSearchJedisPools"/>
+	</bean>
+
+
+	<bean id="channelSearchJedisPools" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="channelSearchJedisPool_1"/>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="channelSearchJedisPool_1" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
+		<constructor-arg name="poolConfig" ref="poolConfig"/>
+		<constructor-arg name="host"  value="127.0.0.1"/>
+		<constructor-arg name="port" value="6379"/>
+		<constructor-arg name="timeout" value="30000"/>
+	</bean>
+	<!--<bean id="RedisManager" class="redis.RedisTestimpl" parent="channelSearchRedisBaseDao">-->
+		<!--<property name="expireTime"  value="86400"/>-->
 	<!--</bean>-->
-
-	<!--<bean id="channelSearchRedisBaseDao" class="redis.RedisBaseDao">-->
-		<!--<property name="jedisPools" ref="channelSearchJedisPools"/>-->
-	<!--</bean>-->
-
-
-	<!--<bean id="channelSearchJedisPools" class="java.util.ArrayList">-->
-		<!--<constructor-arg>-->
-			<!--<list>-->
-				<!--<ref bean="channelSearchJedisPool_1"/>-->
-			<!--</list>-->
-		<!--</constructor-arg>-->
-	<!--</bean>-->
-
-	<!--<bean id="channelSearchJedisPool_1" class="redis.clients.jedis.JedisPool" destroy-method="destroy">-->
-		<!--<constructor-arg name="poolConfig" ref="poolConfig"/>-->
-		<!--<constructor-arg name="host" type="java.lang.String" value="${ppcloud.channel.jedis_1.url}"/>-->
-		<!--<constructor-arg name="port" value="${ppcloud.channel.jedis_1.port}"/>-->
-		<!--<constructor-arg name="timeout" value="${ppcloud.channel.redis.timeout}"/>-->
-	<!--</bean>-->
-
 </beans>

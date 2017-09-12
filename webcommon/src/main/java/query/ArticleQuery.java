@@ -1,9 +1,13 @@
 package query;
 
+import base.BaseDO;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 /**
  * Created by zhangshengchen on 2017/8/23.
  */
-public class ArticleQuery {
+@Document(collection = "Article")
+public class ArticleQuery extends BaseDO{
 
     private String title;
     private String author;
@@ -13,6 +17,7 @@ public class ArticleQuery {
     private Long classifyId;
     private Integer numberRead;
     private String content;
+    private String contentUrl;
     private int pageNum;
     private int pageSize;
 
@@ -95,4 +100,8 @@ public class ArticleQuery {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public String getContentUrl() {return contentUrl;}
+
+    public void setContentUrl(String contentUrl) {this.contentUrl = contentUrl;}
 }
